@@ -13,9 +13,12 @@ export interface EventCandidate {
 export function mapTaskToEvents(task: SpTask, tz: string): EventCandidate[] {
   const candidates: EventCandidate[] = [];
 
-  // Case 1: Explicitly Scheduled (plannedAt)
-  if (task.plannedAt && task.timeEstimate && task.timeEstimate > 0) {
-    const start = new Date(task.plannedAt);
+  // Case 1: Explicitly Scheduled (plannedAt) OR Due with Time
+  // "dueWithTime" is often used for reminders, but we map it to a calendar event too.
+  const scheduledTime = task.plannedAt || (task as any).dueWithTime; // dueWithTime might be missing from interface type
+  
+  if (scheduledTime && task.timeEstimate && task.timeEstimate > 0) {
+    const start = new Date(scheduledTime);
     const end = new Date(start.getTime() + task.timeEstimate);
     const dayKey = start.toISOString().slice(0, 10);
     candidates.push({
@@ -28,7 +31,7 @@ export function mapTaskToEvents(task: SpTask, tz: string): EventCandidate[] {
       description: `SP task: ${task.title}`,
     });
   } 
-  // Case 2: Deadlines (dueDay)
+  // Case 2: Deadlines (dueDay) - Only if no specific time set
   else if (task.dueDay) {
     candidates.push({
       taskId: task.id,
