@@ -1,0 +1,21 @@
+# Super Productivity - exclude runtime/cache files
+superproductivity/backup/*.tmp
+superproductivity/backup/*.lock
+
+# Keep .gitkeep files
+!.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Sensitive data (if any client info leaks into exports)
+*.credentials
+*.secrets
