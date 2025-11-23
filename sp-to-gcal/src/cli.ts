@@ -6,12 +6,12 @@ import path from 'path';
 
 async function main() {
   // Load Config
-  const configPath = path.resolve(__dirname, '../config.sp-gcal.json');
+  const configPath = path.resolve(process.cwd(), 'config.sp-gcal.json');
   const configRaw = await readFile(configPath, 'utf8');
   const config = JSON.parse(configRaw);
 
   // 1. Read SP Data
-  const spBackupPath = path.resolve(__dirname, config.spBackupPath);
+  const spBackupPath = path.resolve(process.cwd(), config.spBackupPath);
   console.log(`Reading Brain from: ${spBackupPath}`);
   
   const sp = await readSpData(spBackupPath);

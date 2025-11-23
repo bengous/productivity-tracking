@@ -19,3 +19,9 @@ Thumbs.db
 # Sensitive data (if any client info leaks into exports)
 *.credentials
 *.secrets
+
+# SP to GCal Tool
+sp-to-gcal/node_modules/
+sp-to-gcal/dist/
+sp-to-gcal/credentials.json
+sp-to-gcal/token.json
