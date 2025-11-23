@@ -1,5 +1,5 @@
 {
-  "spBackupPath": "../superproductivity/backup/super-productivity-backup.json",
+  "spBackupPath": "../superproductivity/backup/__meta_",
   "google": {
     "credentialsPath": "./credentials.json",
     "tokenPath": "./token.json",

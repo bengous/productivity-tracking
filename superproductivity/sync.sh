@@ -66,6 +66,14 @@ function save_brain() {
       log_info "Pushing to origin/master..."
       if git push origin master; then
         log_success "Successfully pushed to GitHub!"
+
+        # 3. Sync to Google Calendar
+        echo -e "${BOLD}📅 Syncing to Google Calendar...${RESET}"
+        if (cd "$REPO_DIR/sp-to-gcal" && npm run sync); then
+          log_success "Calendar sync complete."
+        else
+          log_warn "Calendar sync failed (check logs)."
+        fi
       else
         log_error "Failed to push to GitHub."
         exit 1
