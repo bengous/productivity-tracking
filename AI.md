@@ -5,13 +5,15 @@ This repository hosts a **Self-Sovereign Productivity System** built on [Super P
 ## 🧠 Core Philosophy
 
 *   **Repo = Brain:** The repository is the single source of truth. It contains your Task Data (`.json`), your Methodology (`.md`), and your Tools (`.sh`).
+*   **System Root:** The repository **MUST** be located at `~/projects/productivity-tracking`. The internal scripts (`sync.sh`) and installation tools (`install_local.sh`) rely on this absolute path to function correctly.
 *   **Local-First:** Data lives on your disk, not in a proprietary cloud.
 *   **Time Travel:** Git history provides an immutable record of your productivity evolution.
 *   **ADHD-Focused:** The workflow is optimized for ADHD minds, featuring "Soft Boxing," "Visual Anchors," and "Panic Boxes."
 
 ## 📂 Directory Structure
 
-*   `superproductivity/sync.sh`: The core CLI tool for managing the system.
+*   `install_local.sh`: Automated installer to link the sync script to your PATH.
+*   `superproductivity/sync.sh`: The core CLI tool for managing the system (aliased as `work-session`).
 *   `superproductivity/backup/`: Contains the `super-productivity-backup.json` file, which the app reads/writes.
 *   `docs/`: The Knowledge Base.
     *   `docs/methodology/`: Guides on ADHD, Deep Work, Time Boxing, and your Personal Playbook.
@@ -20,11 +22,13 @@ This repository hosts a **Self-Sovereign Productivity System** built on [Super P
 
 ## 🛠 Usage (The "Sync" Tool)
 
-The system is managed via the `sync.sh` script.
+The system is managed via the `sync.sh` script. If installed via `install_local.sh`, you can run it globally as `work-session`.
 
 ### Interactive Mode
 Run without arguments to open the menu:
 ```bash
+work-session
+# OR
 ./superproductivity/sync.sh
 ```
 
