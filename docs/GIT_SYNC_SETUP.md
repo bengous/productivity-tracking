@@ -27,6 +27,8 @@ If run without arguments, it opens an **Interactive Menu**.
 *   **`save`**: Commits and Pushes all changes to `origin/master`.
     *   *Commit Message:* Automatically timestamped "Brain Dump: YYYY-MM-DD HH:MM".
 *   **`load`**: Pulls the latest changes from `origin/master` (using `--rebase` and `--autostash` for safety).
+*   **`start`**: Pulls latest changes (`load`) and then launches Super Productivity.
+    *   *Tech Note:* Uses `systemd-run --scope` and native Wayland flags (`--ozone-platform=wayland`) to prevent freezing issues on Hyprland.
 
 ## ⚙️ Configuration
 
