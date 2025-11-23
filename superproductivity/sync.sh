@@ -110,15 +110,9 @@ function start_session() {
 
   # 2. Launch the App (detached so it doesn't close with the terminal)
   echo -e "${BOLD}🚀 Launching Super Productivity...${RESET}"
-  # Use systemd-run --scope to inherit environment variables (critical for Wayland)
-  # Force Wayland usage to prevent XWayland "Not Responding" issues on Hyprland
-  systemd-run --user --scope \
-    --unit=super-prod-gui-$(date +%s) \
-    --quiet \
-    superproductivity \
-    --enable-features=UseOzonePlatform \
-    --ozone-platform=wayland \
-    > /dev/null 2>&1 &
+  # Use uwsm (Universal Wayland Session Manager) to handle systemd scope and Wayland env
+  # This prevents the app from freezing when the parent shell closes
+  uwsm app -- superproductivity > /dev/null 2>&1 &
 
   # 3. Keep terminal open for a moment so you see the success message
   echo -e "${GREEN}Have a focused day! Closing terminal in 3 seconds...${RESET}"
