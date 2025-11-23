@@ -29,7 +29,7 @@ function save() {
     git add .
     # Commit with a timestamp so you know when you worked
     git commit -m "Brain Dump: $(date '+%Y-%m-%d %H:%M')"
-    git push origin main
+    git push origin master
     echo "✅ Pushed to GitHub."
   else
     echo "💤 No new thoughts to save."
