@@ -35,8 +35,10 @@ log_error() { echo -e "${RED}❌ $1${RESET}"; }
 
 function show_status() {
 	echo -e "${BOLD}🧠 Checking Brain Status...${RESET}"
-	if [[ -n $(git status -s "$SYNC_FILE") ]]; then
+	# Check the entire repo status, not just the specific sync file
+	if [[ -n $(git status -s) ]]; then
 		log_warn "Unsaved changes detected in your local brain."
+		git status -s
 		echo -e "   👉 You need to ${BOLD}save${RESET} (commit) your changes."
 	else
 		log_success "Brain is clean and synced with GitHub."
