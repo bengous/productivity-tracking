@@ -8,9 +8,11 @@ This is not just a todo list; it is a **"Live Brain"** system. It treats your pr
 *   **Local-First:** Built on [Super Productivity](https://super-productivity.com/), keeping data on your disk, not in the cloud.
 *   **Git-Backed:** Every task, note, and config is versioned. Time travel through your productivity history.
 *   **Anti-Drift:** Engineered with "hard" starts (Hyprland triggers) and background safety nets (Systemd) to prevent ADHD drift.
+*   **Calendar Projection:** Automatically syncs scheduled tasks to Google Calendar for time-blocking visibility.
 
 ## 📖 Documentation
 *   [**System Architecture**](./docs/SYSTEM_ARCHITECTURE.md): The "How" and "Why" of the entire system (Start Here!).
+*   [**Google Calendar Sync**](./docs/GOOGLE_CALENDAR_SYNC.md): Setup guide for the unidirectional sync tool.
 *   [**Methodology**](./docs/methodology/): Guides on ADHD, Deep Work, and Time Boxing.
 *   [**Shortcuts**](./docs/SHORTCUTS.md): Keyboard shortcuts for the workflow.
 
@@ -46,6 +48,7 @@ work-session load
 ## 📂 Structure
 *   `superproductivity/backup/`: The raw JSON database (The Brain).
 *   `superproductivity/sync.sh`: The engine that drives the system.
+*   `sp-to-gcal/`: The Google Calendar Sync tool (Node.js CLI).
 *   `docs/`: The Knowledge Base.
 
 ---

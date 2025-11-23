@@ -21,6 +21,7 @@ Instead of relying on willpower, we engineered an automated pipeline:
 | :--- | :--- | :--- |
 | **The Vault** | **Git** | Stores the task database. Commits act as "Save Points." |
 | **The Engine** | **Bash Script** | Handles the logic of pulling, pushing, and launching. |
+| **The Projection** | **Node.js CLI** | Syncs tasks to Google Calendar (Unidirectional). |
 | **The Trigger** | **Hyprland** | Forces a visual "Morning Standup" terminal on login. |
 | **The Safety** | **Systemd** | Silently commits work every hour (background pulse). |
 
@@ -34,15 +35,23 @@ We created a robust bash script (`superproductivity/sync.sh`) that acts as the i
 **Key Logic:**
 1.  **Load:** `git pull --rebase` (Syncs state across machines).
 2.  **Save:** Checks for file changes -> `git commit` -> `git push`.
-3.  **Start:** A specific function to launch the app safely (see Troubleshooting).
+3.  **Sync:** Triggers `sp-to-gcal` to update Google Calendar.
+4.  **Start:** A specific function to launch the app safely (see Troubleshooting).
 
 ### B. The Configuration (Super Productivity)
 We configured the app to treat a specific file in our repo as its brain:
 * **Settings -> Sync:** `LocalFile`
 * **Path:** `~/projects/productivity-tracking/superproductivity/backup/super-productivity-backup.json`
-* **Settings -> Pomodoro:** **ON** (To visualize passing time).
+* **Note:** We discovered the app actually writes to `__meta_` internally, so our tools read from that.
 
-### C. The Automation (Hyprland & Systemd)
+### C. The Calendar Projection (`sp-to-gcal`)
+A custom TypeScript tool located in `sp-to-gcal/` that provides **Data Sovereignty with Convenience**.
+*   **Read:** Parses the raw JSON brain (`__meta_`).
+*   **Map:** Converts `plannedAt` and `dueWithTime` tasks into Calendar Events.
+*   **Push:** Uses Google Calendar API (OAuth2) to Upsert (Update/Insert) events.
+*   **Idempotency:** Tags events with `privateExtendedProperty` so we never create duplicates.
+
+### D. The Automation (Hyprland & Systemd)
 
 **1. The Morning "Splash Screen"**
 We configured Hyprland (`~/.config/hypr/autostart.conf`) to launch a floating terminal immediately upon login.
