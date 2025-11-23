@@ -1,0 +1,14 @@
+{
+  "spBackupPath": "../superproductivity/backup/super-productivity-backup.json",
+  "google": {
+    "credentialsPath": "./credentials.json",
+    "tokenPath": "./token.json",
+    "calendarId": "primary",
+    "timeZone": "Europe/Paris"
+  },
+  "rules": {
+    "minMsToExport": 300000,
+    "includeTags": [],
+    "excludeTags": []
+  }
+}
