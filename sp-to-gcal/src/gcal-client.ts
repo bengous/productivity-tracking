@@ -100,7 +100,7 @@ export async function upsertEvents(
   try {
     const listResponse = await calendar.events.list({
       calendarId,
-      privateExtendedProperty: ['spTaskId'], 
+      // privateExtendedProperty: ['spTaskId'], // Causing 400 error
       maxResults: 2500,
       singleEvents: true, // Expand recurring events
     });
@@ -112,11 +112,20 @@ export async function upsertEvents(
 
   const existingMap = new Map<string, string>(); // Map: spTaskId -> googleEventId
 
+  console.log("DEBUG: Inspecting first 5 events for properties...");
+  let debugCount = 0;
   for (const evt of existingEvents) {
     if (evt.extendedProperties?.private?.spTaskId) {
       existingMap.set(evt.extendedProperties.private.spTaskId, evt.id!);
     }
+    
+    // Debug log to see if we are missing something
+    if (debugCount < 5 && (evt.summary?.includes('SP task') || evt.summary?.includes('[Due]'))) {
+        console.log(`Event [${evt.summary}] Props:`, JSON.stringify(evt.extendedProperties));
+        debugCount++;
+    }
   }
+  console.log(`DEBUG: Mapped ${existingMap.size} existing SP events.`);
 
   console.log(`Found ${existingEvents.length} tracked events.`);
 
