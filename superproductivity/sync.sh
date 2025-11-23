@@ -110,13 +110,9 @@ function start_session() {
 
   # 2. Launch the App (detached so it doesn't close with the terminal)
   echo -e "${BOLD}🚀 Launching Super Productivity...${RESET}"
-  # Use uwsm (Universal Wayland Session Manager) to handle systemd scope and Wayland env
-  # This prevents the app from freezing when the parent shell closes
-  uwsm app -- superproductivity > /dev/null 2>&1 &
-
-  # 3. Keep terminal open for a moment so you see the success message
-  echo -e "${GREEN}Have a focused day! Closing terminal in 3 seconds...${RESET}"
-  sleep 3
+  # Fire and Forget: Instruct Hyprland to spawn the process directly.
+  # This makes it a child of the compositor, not this shell.
+  hyprctl dispatch exec superproductivity > /dev/null 2>&1
 }
 
 function show_menu() {
