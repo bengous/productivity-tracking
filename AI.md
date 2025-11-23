@@ -16,6 +16,7 @@ This repository hosts a **Self-Sovereign Productivity System** built on [Super P
 *   `superproductivity/sync.sh`: The core CLI tool for managing the system (aliased as `work-session`).
 *   `superproductivity/backup/`: Contains the `super-productivity-backup.json` file, which the app reads/writes.
 *   `docs/`: The Knowledge Base.
+    *   `docs/SYSTEM_ARCHITECTURE.md`: **(NEW)** The comprehensive architectural overview, troubleshooting log, and "Anti-Drift" philosophy. **Read this for deep context.**
     *   `docs/methodology/`: Guides on ADHD, Deep Work, Time Boxing, and your Personal Playbook.
     *   `docs/GIT_SYNC_SETUP.md`: Technical documentation for the sync workflow.
     *   `docs/SHORTCUTS.md`: Essential keyboard shortcuts.

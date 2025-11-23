@@ -30,9 +30,10 @@ Welcome to your personal documentation hub for your **Self-Sovereign Productivit
 ### ⚖️ Legal
 *   **Privacy Policy:** [super-productivity.com/privacy](https://super-productivity.com/privacy)
 
-## 🛠 Local Documentation
+### 🛠 Local Documentation
 
 ### 🧠 Methodology (Knowledge Base)
+*   [**System Architecture**](../SYSTEM_ARCHITECTURE.md): The "How" and "Why" of the entire system (Start Here!).
 *   [**ADHD Blueprint**](./methodology/ADHD_BLUEPRINT.md): Strategies for Time Blindness and Transition Friction.
 *   [**Deep Work Protocol**](./methodology/DEEP_WORK_PROTOCOL.md): Protecting Flow State and handling interruptions.
 *   [**Time Boxing**](./methodology/TIME_BOXING.md): Defeating Parkinson's Law with "Tetris" planning.
