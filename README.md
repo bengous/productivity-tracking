@@ -2,14 +2,38 @@
 
 Personal productivity system using [Super Productivity](https://super-productivity.com/) with git-based backup.
 
-## Setup
+## Installation
 
-### 1. Install Super Productivity (Arch Linux)
+### 1. Prerequisites
+This system depends on **Super Productivity** being installed.
+- **Arch Linux:** `yay -S superproductivity-bin`
+- **Other Distros:** [Download Official App](https://super-productivity.com/)
+
+### 2. Clone Repository
+The system scripts depend on a specific path. Clone this repository to:
 ```bash
-yay -S superproductivity-bin
+mkdir -p ~/projects
+git clone git@github.com:bengous/productivity-tracking.git ~/projects/productivity-tracking
+cd ~/projects/productivity-tracking
 ```
 
-### 2. Initial Configuration
+### 3. CLI Tool Setup
+To use the `work-session` command globally:
+
+**Option A: Automated**
+Run the installer script:
+```bash
+./install_local.sh
+```
+
+**Option B: Manual**
+```bash
+ln -sf ~/projects/productivity-tracking/superproductivity/sync.sh ~/.local/bin/work-session
+```
+
+## Configuration
+
+### Initial Settings
 Open Super Productivity and configure:
 
 1. **Settings > General**
