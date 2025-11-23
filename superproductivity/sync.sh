@@ -110,7 +110,7 @@ function start_session() {
 
   # 2. Launch the App (detached so it doesn't close with the terminal)
   echo -e "${BOLD}🚀 Launching Super Productivity...${RESET}"
-  nohup superproductivity >/dev/null 2>&1 &
+  systemd-run --user --scope --unit=super-prod-gui --quiet superproductivity > /dev/null 2>&1 &
 
   # 3. Keep terminal open for a moment so you see the success message
   echo -e "${GREEN}Have a focused day! Closing terminal in 3 seconds...${RESET}"
