@@ -1,22 +1,26 @@
-# Super Productivity - exclude runtime/cache files
-superproductivity/backup/*.tmp
-superproductivity/backup/*.lock
+# Super Productivity - private local data, never commit
+superproductivity/backup/*
 
-# Keep .gitkeep files
-!.gitkeep
+# Keep placeholder files
+!superproductivity/backup/.gitkeep
 
 # OS files
 .DS_Store
 Thumbs.db
 
 # Editor files
+.codex
 *.swp
 *.swo
 *~
 .idea/
 .vscode/
 
-# Sensitive data (if any client info leaks into exports)
+# Sensitive data
+.env
+.env.*
+*.key
+*.pem
 *.credentials
 *.secrets
 

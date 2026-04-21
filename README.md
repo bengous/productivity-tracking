@@ -1,13 +1,13 @@
-# The Automated Brain: Self-Sovereign Productivity System
+# Self-Sovereign Productivity Toolkit
 
-> *"The repository is the single source of truth. It contains your Task Data, your Methodology, and your Tools."*
+> Local-first productivity tooling around Super Productivity, Git, and Google Calendar.
 
 ## 🧠 Core Philosophy
-This is not just a todo list; it is a **"Live Brain"** system. It treats your productivity data as critical infrastructure, version-controlled alongside your code.
+This repository stores the tooling and documentation for a local-first productivity workflow. Personal task exports stay on disk and are ignored by Git.
 
 *   **Local-First:** Built on [Super Productivity](https://super-productivity.com/), keeping data on your disk, not in the cloud.
-*   **Git-Backed:** Every task, note, and config is versioned. Time travel through your productivity history.
-*   **Anti-Drift:** Engineered with "hard" starts (Hyprland triggers) and background safety nets (Systemd) to prevent ADHD drift.
+*   **Git-Backed Tooling:** Scripts and methodology are versioned without storing task history.
+*   **Anti-Drift:** Engineered with "hard" starts and background safety nets to reduce context drift.
 *   **Calendar Projection:** Automatically syncs scheduled tasks to Google Calendar for time-blocking visibility.
 
 ## 📖 Documentation
@@ -38,7 +38,7 @@ The system is managed via the `work-session` CLI (aliased to `sync.sh`).
 # Open the Interactive Menu
 work-session
 
-# Save your Brain (Commit & Push)
+# Save public repo changes (Commit & Push)
 work-session save
 
 # Load your Brain (Pull & Rebase)
@@ -46,7 +46,7 @@ work-session load
 ```
 
 ## 📂 Structure
-*   `superproductivity/backup/`: The raw JSON database (The Brain).
+*   `superproductivity/backup/`: Local-only Super Productivity exports. Ignored by Git except `.gitkeep`.
 *   `superproductivity/sync.sh`: The engine that drives the system.
 *   `sp-to-gcal/`: The Google Calendar Sync tool (Node.js CLI).
 *   `docs/`: The Knowledge Base.

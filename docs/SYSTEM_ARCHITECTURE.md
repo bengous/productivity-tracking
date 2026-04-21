@@ -1,25 +1,25 @@
 # The Automated Brain: An Anti-Drift Productivity System
 
 ## 1. The Problem: "The Drift"
-As a developer with perfectionist tendencies and executive function challenges (specifically "drifting" between tasks and auditory memory issues), I needed a system that:
-1.  **Visualizes Time:** I remember what I see, not what I hear.
-2.  **Prevents Drifting:** I needed a "hard start" to the day to prevent wandering into random rabbit holes.
-3.  **Leverages Dev Skills:** I am comfortable in the terminal and with Git.
-4.  **Avoids the "Builder's Trap":** I must not build a tool from scratch (procrastination).
+This workflow is designed for developers who need a local-first focus system that:
+1.  **Visualizes Time:** Makes the current plan and time blocks visible.
+2.  **Prevents Drifting:** Creates a "hard start" to reduce context switching.
+3.  **Leverages Dev Skills:** Uses the terminal, Git, and automation instead of a proprietary cloud.
+4.  **Avoids the "Builder's Trap":** Extends an existing open-source app instead of replacing it.
 
 ## 2. The Solution Strategy
 
 ### The Tool: Super Productivity
 We selected **Super Productivity** over paid SaaS tools (Morgen, Sunsama) or generic To-Do lists.
 * **Why:** It is open-source, local-first, and designed for developers.
-* **Key Feature:** "LocalFile Sync." It saves the entire database to a single JSON file, which allows us to version control our life.
+* **Key Feature:** "LocalFile Sync." It saves the database to a local JSON file that can be used by local tools without committing private data.
 
 ### The Architecture
 Instead of relying on willpower, we engineered an automated pipeline:
 
 | Component | Technology | Function |
 | :--- | :--- | :--- |
-| **The Vault** | **Git** | Stores the task database. Commits act as "Save Points." |
+| **The Vault** | **Local files** | Stores the private task database outside Git tracking. |
 | **The Engine** | **Bash Script** | Handles the logic of pulling, pushing, and launching. |
 | **The Projection** | **Node.js CLI** | Syncs tasks to Google Calendar (Unidirectional). |
 | **The Trigger** | **Hyprland** | Forces a visual "Morning Standup" terminal on login. |
@@ -34,7 +34,7 @@ We created a robust bash script (`superproductivity/sync.sh`) that acts as the i
 
 **Key Logic:**
 1.  **Load:** `git pull --rebase` (Syncs state across machines).
-2.  **Save:** Checks for file changes -> `git commit` -> `git push`.
+2.  **Save:** Checks for public repo changes -> `git commit` -> `git push`.
 3.  **Sync:** Triggers `sp-to-gcal` to update Google Calendar.
 4.  **Start:** A specific function to launch the app safely (see Troubleshooting).
 
@@ -46,7 +46,7 @@ We configured the app to treat a specific file in our repo as its brain:
 
 ### C. The Calendar Projection (`sp-to-gcal`)
 A custom TypeScript tool located in `sp-to-gcal/` that provides **Data Sovereignty with Convenience**.
-*   **Read:** Parses the raw JSON brain (`__meta_`).
+*   **Read:** Parses the local-only Super Productivity export (`__meta_`).
 *   **Map:** Converts `plannedAt` and `dueWithTime` tasks into Calendar Events.
 *   **Push:** Uses Google Calendar API (OAuth2) to Upsert (Update/Insert) events.
 *   **Idempotency:** Tags events with `privateExtendedProperty` so we never create duplicates.
@@ -60,7 +60,7 @@ We configured Hyprland (`~/.config/hypr/autostart.conf`) to launch a floating te
 * **The Visual:** Window rules force this terminal to be **floating and centered**, demanding attention before work begins.
 
 **2. The Safety Net**
-We created a Systemd user timer (`brain-sync.timer`) that runs `work-session save` every hour. This ensures that if I "drift" and forget to close the app, my data is safe.
+We created a Systemd user timer (`brain-sync.timer`) that runs `work-session save` every hour. This can be used to keep public tooling changes synced; private Super Productivity exports remain ignored by Git.
 
 ---
 
@@ -93,7 +93,7 @@ This was the most critical part of the engineering process. We faced a persisten
 1.  **Login:** The terminal pops up automatically. It pulls the latest plan.
 2.  **The App Launches:** The terminal vanishes, leaving only the focus tool.
 3.  **Work:** Use the Pomodoro timer.
-4.  **Drift Check:** If I close the app by mistake, type `morning` in the terminal.
+4.  **Drift Check:** If the app is closed by mistake, type `morning` in the terminal.
 
 ### Aliases
 Added to `.zshrc` for muscle memory:

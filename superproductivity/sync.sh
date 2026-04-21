@@ -7,6 +7,11 @@
 # Configuration
 REPO_DIR="$HOME/projects/productivity-tracking"
 SYNC_FILE="superproductivity/backup/super-productivity-backup.json"
+PRIVATE_PATHS=(
+  "superproductivity/backup/**"
+  "sp-to-gcal/credentials.json"
+  "sp-to-gcal/token.json"
+)
 
 # Colors
 RED='\033[0;31m'
@@ -57,7 +62,8 @@ function save_brain() {
   # 2. Check for file changes
   if [[ -n $(git status -s) ]]; then
     log_info "Changes detected. preparing to commit..."
-    git add .
+    git add -A -- .
+    git reset -q -- "${PRIVATE_PATHS[@]}" 2>/dev/null || true
 
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M')
@@ -185,4 +191,3 @@ else
   # No arguments, run interactive menu
   show_menu
 fi
-

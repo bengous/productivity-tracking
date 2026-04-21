@@ -1,6 +1,6 @@
 # 🧠 Super Productivity - Live Brain Documentation
 
-Welcome to your personal documentation hub for your **Self-Sovereign Productivity System**. This repository tracks not just your tasks, but your entire productivity methodology.
+Welcome to the documentation hub for this **Self-Sovereign Productivity System**. This repository tracks public tooling and methodology; personal task exports stay local.
 
 ## 📚 Official Resources
 
@@ -38,7 +38,6 @@ Welcome to your personal documentation hub for your **Self-Sovereign Productivit
 *   [**Deep Work Protocol**](./methodology/DEEP_WORK_PROTOCOL.md): Protecting Flow State and handling interruptions.
 *   [**Time Boxing**](./methodology/TIME_BOXING.md): Defeating Parkinson's Law with "Tetris" planning.
 *   [**The Psychology of Work**](./methodology/PSYCHOLOGY.md): Understanding Dopamine and Energy management.
-*   [**Personal Playbook**](./methodology/PERSONAL_PLAYBOOK.md): Your custom protocols (Tags, Emergency Recovery, etc).
 
 ### ⚙️ Tools & Setup
 *   [**⌨️ Keyboard Shortcuts**](./SHORTCUTS.md): Essential shortcuts for keyboard-centric workflows.
